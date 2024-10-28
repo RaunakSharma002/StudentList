@@ -4,14 +4,14 @@ const cors = require('cors');
 
 const app = express();
 
-// const corsOptions = {
-//     origin: 'http://example.com', 
-//     methods: 'GET,POST', 
-//     allowedHeaders: 'Content-Type,Authorization'
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+    origin: 'http://example.com', 
+    methods: 'GET,POST', 
+    allowedHeaders: 'Content-Type,Authorization'
+};
+app.use(cors(corsOptions));
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 mongoose.connect('mongodb+srv://RaunakSharma:PozqDxDkbYn0rcLm@cluster0.zmhsk06.mongodb.net/')
