@@ -2,7 +2,7 @@ import {IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHea
 import {Edit, Delete} from '@mui/icons-material'
 
 
-function StudentTable({students, handleEditClick, }){
+function StudentTable({students, handleEditClick, handleDeleteClick}){
     
     return(
         <div>
@@ -22,18 +22,18 @@ function StudentTable({students, handleEditClick, }){
                     <TableBody>
                         {students.map((student, idx)=>{
                             return(
-                            <TableRow key={idx+1}>
-                                <TableCell>{idx+1}</TableCell>
+                            <TableRow key={student.id}>
+                                <TableCell>{student.id}</TableCell>
                                 <TableCell>{student.name}</TableCell>
                                 <TableCell>{student.age}</TableCell>
                                 <TableCell>{student.email}</TableCell>
                                 <TableCell>
-                                    <IconButton sx={{color: 'purple'}} onClick={handleEditClick}>
+                                    <IconButton sx={{color: 'purple'}} onClick={()=>handleEditClick(student)}>
                                         <Edit/>
                                     </IconButton>
                                 </TableCell>
                                 <TableCell>
-                                    <IconButton color="secondary">
+                                    <IconButton color="secondary" onClick={()=>handleDeleteClick(student.id)}>
                                         <Delete/>
                                     </IconButton>
                                 </TableCell>

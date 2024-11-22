@@ -26,6 +26,10 @@ const StudentSchema = new mongoose.Schema({
 
 const Student = mongoose.model('Student', StudentSchema);
 
+app.get('/' , async(req,res)=> {
+    res.json({message: "Server running successfully"});
+})
+
 app.get('/students', async (req, res) =>{
     const students = await Student.find();
     res.json(students);
@@ -39,12 +43,12 @@ app.post('/students', async (req, res)=>{
 });
 
 app.put('/students/:id', async (req, res)=>{
-    await Student.findByIdAndUpdate(req.params.id, req.body);
+    await Student.findOneAndUpdate({id: req.params.id}, req.body);
     res.json({message: 'Student Updated'});
 });
 
 app.delete('/students/:id', async (req, res) =>{
-    await Student.findByIdAndDelete(req.params.id);
+    await Student.findOneAndDelete({id: req.params.id});
     res.json({message: 'Student Deleted'});
 });
 
